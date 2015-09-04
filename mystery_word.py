@@ -1,37 +1,42 @@
-
+import random
+print(random.randint(0,2))
+word_list_ex = ["red", "blue", "green", "interesting"]
 def easy_words(word_list):
-    """
-    Returns a filtered version of the word list with words only containing
-    4-6 characters.
-    """
-    # TODO
-    pass
-
+    #Returns a filtered version of the word list with words only containing
+    #4-6 characters.
+    filterd_list = []
+    for word in word_list:
+        if len(word) >=4 and len(word) <= 6:
+            filterd_list.append(word)
+    return filterd_list
 
 def medium_words(word_list):
-    """
-    Returns a filtered version of the word list with words only containing
-    6-8 characters.
-    """
-    # TODO
-    pass
+    # Returns a filtered version of the word list with words only containing
+    # 6-8 characters.
+
+    filterd_list = []
+    for word in word_list:
+        if len(word) >=6and len(word) <= 8:
+            filterd_list.append(word)
+    return filterd_list
 
 
 def hard_words(word_list):
-    """
-    Returns a filtered version of the word list with words only containing
-    8+ characters.
-    """
-    # TODO
-    pass
+    # Returns a filtered version of the word list with words only containing
+    # 8+ characters.
+    filterd_list = []
+    for word in word_list:
+        if len(word) >7:
+            filterd_list.append(word)
+    return filterd_list
 
 
 def random_word(word_list):
     """
     Returns a random word from the word list.
     """
-    # TODO
-    pass
+    pick_a_word = random.randint(0,len(word_list))
+    return word_list[pick_a_word]
 
 
 def display_word(word, guesses):
