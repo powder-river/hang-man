@@ -1,5 +1,12 @@
 import random
-word_list_ex = ["red", "blue", "green", "interesting", "baby","vacation"]
+#word_list_ex = ["red", "blue", "green", "interesting", "baby","vacation"]
+
+with open('/usr/share/dict/words') as w:
+    word_dictionary = w.read()
+    word_dictionary = word_dictionary.split()
+
+
+
 def easy_words(word_list):
     #Returns a filtered version of the word list with words only containing
     #4-6 characters.
@@ -84,14 +91,14 @@ def main():
     5. Giving the user the option to play again
     """
     difficulty = input("Enter a Difficuty Level, e for easy, m for medium, or h for hard...\n")
-    attempts  =  8
+    attempts  =  12
     guessed_words = []
     if difficulty.lower() == 'e':
-        game_word = easy_words(word_list_ex)
+        game_word = easy_words(word_dictionary)
     elif difficulty.lower() == 'm':
-        game_word = medium_words(word_list_ex)
+        game_word = medium_words(word_dictionary)
     elif difficulty.lower() == 'h':
-        game_word = hard_words(word_list_ex)
+        game_word = hard_words(word_dictionary)
     else:
         print("invalid inupt")
     game_word = random_word(game_word)
@@ -100,8 +107,17 @@ def main():
         guessed_words.append(user_guess)
         print(display_word(game_word, guessed_words))
         attempts -= 1
+        print("You have guessed", guessed_words)
+    print("The answer was",game_word)
 
 
+
+
+# put in a conditional with a win_lost variable
+# set the win_lost equal to true or false and
+# call some sort of message that corresponds with a win or loss
+# i believe i can use recursion in order to prompt the user to play again
+#like in user_input to play again equals true then execule main()
 
 
 
