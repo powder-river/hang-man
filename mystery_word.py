@@ -1,6 +1,5 @@
 import random
-print(random.randint(0,2))
-word_list_ex = ["red", "blue", "green", "interesting"]
+word_list_ex = ["red", "blue", "green", "interesting", "baby","vacation"]
 def easy_words(word_list):
     #Returns a filtered version of the word list with words only containing
     #4-6 characters.
@@ -59,10 +58,8 @@ def display_word(word, guesses):
 
 
 def is_word_complete(word, guesses):
-    """
-    Returns True if the list of guesses covers every letter in the word,
-    otherwise returns False.
-    """
+    #Returns True if the list of guesses covers every letter in the word,
+    #otherwise returns False.
     underscore_list = display_word(word,guesses).split()
     underscore_list = "".join(underscore_list)
 
@@ -70,18 +67,8 @@ def is_word_complete(word, guesses):
         return True
     else:
         return False
+#print(is_word_complete("beue",["e","b","u"]))
 
-    de_bug = []
-    # underscore_list = display_word(word,guesses).split()
-    # for n in range(len(underscore_list)):
-    #     if underscore_list[n] == "_":
-    #         de_bug.append("x")
-    #     else:
-    #         de_bug.append("o")
-
-    return underscore_list
-
-print(is_word_complete("beue",["e","b","u"]))
 def main():
     """
     Runs when the program is called from the command-line.
@@ -96,7 +83,27 @@ def main():
     4. Finishing the game and displaying whether the user has won or lost
     5. Giving the user the option to play again
     """
-    # TODO
+    difficulty = input("Enter a Difficuty Level, e for easy, m for medium, or h for hard...\n")
+    attempts  =  8
+    guessed_words = []
+    if difficulty.lower() == 'e':
+        game_word = easy_words(word_list_ex)
+    elif difficulty.lower() == 'm':
+        game_word = medium_words(word_list_ex)
+    elif difficulty.lower() == 'h':
+        game_word = hard_words(word_list_ex)
+    else:
+        print("invalid inupt")
+    game_word = random_word(game_word)
+    while attempts > 0 and is_word_complete(game_word,guessed_words) == False:
+        user_guess = input("Guess a letter\n")
+        guessed_words.append(user_guess)
+        print(display_word(game_word, guessed_words))
+        attempts -= 1
+
+
+
+
 
 
 if __name__ == '__main__':
