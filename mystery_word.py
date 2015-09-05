@@ -67,7 +67,7 @@ def display_word(word, guesses):
 
 
 
-    return underscore_word
+    return " ".join(underscore_word)
 
 print(display_word("blue", ['b','e']))
 def is_word_complete(word, guesses):
