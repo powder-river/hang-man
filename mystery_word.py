@@ -91,8 +91,9 @@ def main():
     5. Giving the user the option to play again
     """
     difficulty = input("Enter a Difficuty Level, e for easy, m for medium, or h for hard...\n")
-    attempts  =  12
+    attempts  =  13
     guessed_words = []
+
     if difficulty.lower() == 'e':
         game_word = easy_words(word_dictionary)
     elif difficulty.lower() == 'm':
@@ -101,6 +102,8 @@ def main():
         game_word = hard_words(word_dictionary)
     else:
         print("invalid inupt")
+
+
     game_word = random_word(game_word)
     while attempts > 0 and is_word_complete(game_word,guessed_words) == False:
         user_guess = input("Guess a letter\n")
@@ -108,7 +111,17 @@ def main():
         print(display_word(game_word, guessed_words))
         attempts -= 1
         print("You have guessed", guessed_words)
-    print("The answer was",game_word)
+        print("You have {} guesses remaining".format(attempts))
+    if is_word_complete(game_word,guessed_words) == False:
+        print("You have lost, the answer was",game_word)
+        again = input("Play Again? y/n")
+        if again.lower() == "y":
+            main()
+    else:
+        print("CORRECT!!!! The answer was",game_word)
+        again = input("Play Again? y/n")
+        if again.lower() == "y":
+            main()
 
 
 
