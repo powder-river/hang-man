@@ -1,15 +1,15 @@
 import random
-#word_list_ex = ["red", "blue", "green", "interesting", "baby","vacation"]
 
+# opens the apple dictonary and saves the words from the apple dictonary
+# into a list
 with open('/usr/share/dict/words') as w:
     word_dictionary = w.read()
     word_dictionary = word_dictionary.split()
 
 
-
+#Returns a filtered version of the word list with words only containing
+#4-6 characters.
 def easy_words(word_list):
-    #Returns a filtered version of the word list with words only containing
-    #4-6 characters.
     filterd_list = []
     for word in word_list:
         if len(word) >=4 and len(word) <= 6:
@@ -17,10 +17,9 @@ def easy_words(word_list):
     return filterd_list
 
 
+# Returns a filtered version of the word list with words only containing
+# 6-8 characters.
 def medium_words(word_list):
-    # Returns a filtered version of the word list with words only containing
-    # 6-8 characters.
-
     filterd_list = []
     for word in word_list:
         if len(word) >=6and len(word) <= 8:
@@ -28,9 +27,9 @@ def medium_words(word_list):
     return filterd_list
 
 
+# Returns a filtered version of the word list with words only containing
+# 8+ characters.
 def hard_words(word_list):
-    # Returns a filtered version of the word list with words only containing
-    # 8+ characters.
     filterd_list = []
     for word in word_list:
         if len(word) >7:
@@ -38,17 +37,20 @@ def hard_words(word_list):
     return filterd_list
 
 
+# Returns a random word from the word list.
 def random_word(word_list):
-    # Returns a random word from the word list.
     pick_a_word = random.randint(0,len(word_list))
     return word_list[pick_a_word]
 
 
+#takes the word and converts it to underscores
 def display_word(word, guesses):
-    #takes the word and converts it to underscores
     underscore_word = []
     answer = []
     incorrect_guesses = []
+
+    #iterates over each letter and puts it into a list
+    #then it iterates over that list and turns each letter into an _
     for n in word:
         answer.append(n)
     for n in range(len(answer)):
@@ -57,6 +59,8 @@ def display_word(word, guesses):
 
     #takes the guess (which is in the form of a list),
     #upcases it, if true displays the letter in the word
+    #takes the word from a list and turns it into a string with each letter
+    #seperated by a space
     for g in guesses:
         for n in range(len(answer)):
             if g == answer[n]:
@@ -64,9 +68,9 @@ def display_word(word, guesses):
     return " ".join(underscore_word)
 
 
+#Returns True if the list of guesses covers every letter in the word,
+#otherwise returns False.
 def is_word_complete(word, guesses):
-    #Returns True if the list of guesses covers every letter in the word,
-    #otherwise returns False.
     underscore_list = display_word(word,guesses).split()
     underscore_list = "".join(underscore_list)
 
@@ -74,26 +78,17 @@ def is_word_complete(word, guesses):
         return True
     else:
         return False
-#print(is_word_complete("beue",["e","b","u"]))
 
+
+#puts all the functions together and runs the program
 def main():
-    """
-    Runs when the program is called from the command-line.
-
-    1. Prompts the user for a difficulty level
-    2. Sets up the game based upon the difficulty level
-    3. Performs the game loop, consisting of:
-       a. Printing the word in progress, using _ for unguessed letters
-       b. Printing the number of guesses remaining
-       c. Printing the letters that have been guessed so far
-       d. Prompting the user for a letter to guess
-    4. Finishing the game and displaying whether the user has won or lost
-    5. Giving the user the option to play again
-    """
+    #variables
     difficulty = input("Enter a Difficuty Level, e for easy, m for medium, or h for hard...\n")
     attempts  =  13
     guessed_words = []
 
+    #starts the game, prompts the user for difficulty level
+    #chooses a word based off of the difficulty
     if difficulty.lower() == 'e':
         game_word = easy_words(word_dictionary)
     elif difficulty.lower() == 'm':
@@ -103,7 +98,8 @@ def main():
     else:
         print("invalid inupt")
 
-
+    #this is where the game is played. shows a blank slate and fills in
+    #the correct letters as they are guessed
     game_word = random_word(game_word)
     while attempts > 0 and is_word_complete(game_word,guessed_words) == False:
         user_guess = input("Guess a letter\n")
@@ -112,6 +108,9 @@ def main():
         attempts -= 1
         print("You have guessed", guessed_words)
         print("You have {} guesses remaining".format(attempts))
+
+
+    #tells the user if they have won or not, and ask if they want to play again
     if is_word_complete(game_word,guessed_words) == False:
         print("You have lost, the answer was",game_word)
         again = input("Play Again? y/n")
@@ -122,17 +121,6 @@ def main():
         again = input("Play Again? y/n")
         if again.lower() == "y":
             main()
-
-
-
-
-# put in a conditional with a win_lost variable
-# set the win_lost equal to true or false and
-# call some sort of message that corresponds with a win or loss
-# i believe i can use recursion in order to prompt the user to play again
-#like in user_input to play again equals true then execule main()
-
-
 
 
 if __name__ == '__main__':
