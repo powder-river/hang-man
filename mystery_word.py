@@ -10,6 +10,7 @@ def easy_words(word_list):
             filterd_list.append(word)
     return filterd_list
 
+
 def medium_words(word_list):
     # Returns a filtered version of the word list with words only containing
     # 6-8 characters.
@@ -38,18 +39,6 @@ def random_word(word_list):
 
 
 def display_word(word, guesses):
-    """
-    Returns a string that including blanks (_) and letters from the given word,
-    filling in letters based upon the list of guesses.
-
-    There should be spaces between each blank _ and each letter. Each letter
-    should be capitalized for display.
-
-    For example, if the word is BOMBARD and the letters guessed are a, b,
-    and d, this function should return 'B _ _ B A _ D'.
-    """
-
-
     #takes the word and converts it to underscores
     underscore_word = []
     answer = []
@@ -59,26 +48,40 @@ def display_word(word, guesses):
     for n in range(len(answer)):
         if answer[n].isalpha():
             underscore_word.append("_")
-    #takes the guess, upcases it, if true displays the letter in the word
+
+    #takes the guess (which is in the form of a list),
+    #upcases it, if true displays the letter in the word
     for g in guesses:
         for n in range(len(answer)):
             if g == answer[n]:
                 underscore_word[n] = g.upper()
-
-
-
     return " ".join(underscore_word)
 
-print(display_word("blue", ['b','e']))
+
 def is_word_complete(word, guesses):
     """
     Returns True if the list of guesses covers every letter in the word,
     otherwise returns False.
     """
-    # TODO
-    pass
+    underscore_list = display_word(word,guesses).split()
+    underscore_list = "".join(underscore_list)
 
+    if underscore_list == word.upper():
+        return True
+    else:
+        return False
 
+    de_bug = []
+    # underscore_list = display_word(word,guesses).split()
+    # for n in range(len(underscore_list)):
+    #     if underscore_list[n] == "_":
+    #         de_bug.append("x")
+    #     else:
+    #         de_bug.append("o")
+
+    return underscore_list
+
+print(is_word_complete("beue",["e","b","u"]))
 def main():
     """
     Runs when the program is called from the command-line.

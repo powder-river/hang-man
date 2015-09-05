@@ -37,7 +37,7 @@ class TestMysteryWord(unittest.TestCase):
         self.assertEqual(display_word(word, ["i", "n", "z"]), "I N _ _ _ _ _ _ I _ N")
 
 
-    def test_is_word_complete():
+    def test_is_word_complete(self):
         word = "river"
         self.assertFalse(is_word_complete(word, []))
         self.assertFalse(is_word_complete(word, ["r"]))
