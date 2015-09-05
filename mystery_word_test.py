@@ -27,16 +27,16 @@ class TestMysteryWord(unittest.TestCase):
         self.assertTrue(word in word_list)
 
 
-    # def test_display_word():
-    #     word = "integration"
-    #     self.assertEqual(display_word(word, []), "_ _ _ _ _ _ _ _ _ _ _")
-    #     self.assertEqual(display_word(word, ["z"]), "_ _ _ _ _ _ _ _ _ _ _")
-    #     self.assertEqual(display_word(word, ["g"]), "_ _ _ _ G _ _ _ _ _ _")
-    #     self.assertEqual(display_word(word, ["i"]), "I _ _ _ _ _ _ _ I _ _")
-    #     self.assertEqual(display_word(word, ["i", "g"]), "I _ _ _ G _ _ _ I _ _")
-    #     self.assertEqual(display_word(word, ["i", "n", "z"]), "I N _ _ _ _ _ _ I _ N")
-    #
-    #
+    def test_display_word(self):
+        word = "integration"
+        self.assertEqual(display_word(word, []), "_ _ _ _ _ _ _ _ _ _ _")
+        self.assertEqual(display_word(word, ["z"]), "_ _ _ _ _ _ _ _ _ _ _")
+        self.assertEqual(display_word(word, ["g"]), "_ _ _ _ G _ _ _ _ _ _")
+        self.assertEqual(display_word(word, ["i"]), "I _ _ _ _ _ _ _ I _ _")
+        self.assertEqual(display_word(word, ["i", "g"]), "I _ _ _ G _ _ _ I _ _")
+        self.assertEqual(display_word(word, ["i", "n", "z"]), "I N _ _ _ _ _ _ I _ N")
+
+
     # def test_is_word_complete():
     #     word = "river"
     #     self.assertFalse(is_word_complete(word, []))

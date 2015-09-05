@@ -32,9 +32,7 @@ def hard_words(word_list):
 
 
 def random_word(word_list):
-    """
-    Returns a random word from the word list.
-    """
+    # Returns a random word from the word list.
     pick_a_word = random.randint(0,len(word_list))
     return word_list[pick_a_word]
 
@@ -50,10 +48,28 @@ def display_word(word, guesses):
     For example, if the word is BOMBARD and the letters guessed are a, b,
     and d, this function should return 'B _ _ B A _ D'.
     """
-    # TODO
-    pass
 
 
+    #takes the word and converts it to underscores
+    underscore_word = []
+    answer = []
+    incorrect_guesses = []
+    for n in word:
+        answer.append(n)
+    for n in range(len(answer)):
+        if answer[n].isalpha():
+            underscore_word.append("_")
+    #takes the guess, upcases it, if true displays the letter in the word
+    for g in guesses:
+        for n in range(len(answer)):
+            if g == answer[n]:
+                underscore_word[n] = g.upper()
+
+
+
+    return underscore_word
+
+print(display_word("blue", ['b','e']))
 def is_word_complete(word, guesses):
     """
     Returns True if the list of guesses covers every letter in the word,
