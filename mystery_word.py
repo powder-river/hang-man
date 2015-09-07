@@ -45,17 +45,16 @@ def random_word(word_list):
 
 #takes the word and converts it to underscores
 def display_word(word, guesses):
-    underscore_word = []
     answer = []
-    incorrect_guesses = []
+    
 
+
+    #turns word into a list with _ at each letter
     #iterates over each letter and puts it into a list
-    #then it iterates over that list and turns each letter into an _
+    underscore_word = list("_"*len(word))
     for n in word:
         answer.append(n)
-    for n in range(len(answer)):
-        if answer[n].isalpha():
-            underscore_word.append("_")
+
 
     #takes the guess (which is in the form of a list),
     #upcases it, if true displays the letter in the word
@@ -97,6 +96,8 @@ def main():
         game_word = hard_words(word_dictionary)
     else:
         print("invalid inupt")
+        main()
+
 
     #this is where the game is played. shows a blank slate and fills in
     #the correct letters as they are guessed
